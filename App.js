@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MainApp from './src/MainApp';
+import { createAppContainer } from 'react-navigation';
+import { createRootNavigator, SignedOut } from './src/Router';
 
-export default class App extends Component {
-  
-  render() {
-    return (
-      <View>
-    <MainApp />
-      </View>
-    );
-  }
-}
+const MainApp = createRootNavigator(SignedOut);
+
+export default createAppContainer(MainApp);

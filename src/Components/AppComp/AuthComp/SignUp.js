@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Alert, View } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import { CustomPicker } from 'react-native-custom-picker';
-import { CardView, CardSection, Input, Spinner } from '../../common';
+import { CardView, CardSection, Input } from '../../common';
 
 class Signup extends Component {
     render() {
+        const { onSignUp } = this.props;
         const options = ['CUSTOMER', 'PROVIDER'];
         return (
             <Card
@@ -50,7 +51,9 @@ class Signup extends Component {
                 <CardView>
                     <Button
                         title="SIGN UP"
+                        onPress={onSignUp}
                     />
+        
                 </CardView>
             </Card>
         );
