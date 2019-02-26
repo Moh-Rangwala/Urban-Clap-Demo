@@ -5,6 +5,10 @@ import { CustomPicker } from 'react-native-custom-picker';
 import { CardView, CardSection, Input } from '../../common';
 
 class Signup extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { name: '', email: '', password: '', usertype: '' };
+    }
     render() {
         const { onSignUp } = this.props;
         const options = ['CUSTOMER', 'PROVIDER'];
@@ -17,6 +21,8 @@ class Signup extends Component {
                         <Input
                             label="Name"
                             placeholder="Enter Full Name"
+                            value={this.state.name}
+                            onChangeText={(text) => this.setState({ name: text })}
                         />
                     </CardSection>
 
@@ -24,6 +30,8 @@ class Signup extends Component {
                         <Input
                             label="Email"
                             placeholder="x-y-z@---mail.com"
+                            value={this.state.email}
+                            onChangeText={(text) => this.setState({ email: text })}
                         />
                     </CardSection>
 
@@ -32,6 +40,8 @@ class Signup extends Component {
                             secureText
                             label="Password"
                             placeholder="password"
+                            value={this.state.password}
+                            onChangeText={(text) => this.setState({ password: text })}
                         />
                     </CardSection>
 

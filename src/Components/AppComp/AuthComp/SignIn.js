@@ -4,6 +4,10 @@ import SplashScreen from 'react-native-splash-screen';
 import { CardView, CardSection, Input } from '../../common';
 
 class SignIn extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { email: '', password: '' };
+}
     componentDidMount() {
         SplashScreen.hide();
     }
@@ -19,6 +23,8 @@ class SignIn extends Component {
                         <Input
                             label="Email"
                             placeholder="x-y-z@---mail.com"
+                            value={this.state.email}
+                            onChangeText={(text) => this.setState({ email: text })}
                         />
                     </CardSection>
 
@@ -27,6 +33,8 @@ class SignIn extends Component {
                             secureText
                             label="Password"
                             placeholder="password"
+                            value={this.state.password}
+                            onChangeText={(text) => this.setState({ password: text })}
                         />
                     </CardSection>
 

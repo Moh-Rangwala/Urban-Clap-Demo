@@ -2,52 +2,53 @@ import React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import {
     createStackNavigator,
+    createMaterialTopTabNavigator,
+    createSwitchNavigator,
     createBottomTabNavigator,
-    createSwitchNavigator
+    createNavigationContainer,
+    createAppContainer,
 } from 'react-navigation';
 
+import Customer from './Containers/CustomerContainer';
 import SIGNIN from './Screens/SIGNIN';
 import SIGNUP from './Screens/SIGNUP';
-import HOME from './Screens/HOME';
 
-const headerStyle = {
-    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
-};
-
-export const SignedOut = createStackNavigator(
- {
-    SignUp: {
-        screen: SIGNUP,
-        navigationOptions: {
-            title: 'URBAN CLAP',
-            headerStyle
+const SignedOut = createStackNavigator(
+    {
+        SignUp: {
+            screen: SIGNUP,
+            navigationOptions: {
+                title: 'URBAN CLAP',
+            }
+        },
+        SignIn: {
+            screen: SIGNIN,
+            navigationOptions: {
+                title: 'URBAN CLAP',
+            }
         }
     },
-    SignIn: {
-        screen: SIGNIN,
-        navigationOptions: {
-            title: 'URBAN CLAP',
-            headerStyle
-        }
-    }
-},
     {
         initialRouteName: 'SignIn'
     }
 );
 
-export const SignedIn = createBottomTabNavigator(
+const CustomerLoggedIn = createStackNavigator(
     {
-        Home: {
-            screen: HOME
+        Customer: {
+            screen: Customer,
+            navigationOptions: {
+                title: 'URBAN CLAP',
+            }
         }
-    });
+    }
+);
 
-export const createRootNavigator = () => {
+const createRootNavigator = () => {
     return createSwitchNavigator(
         {
             SignedIn: {
-                screen: SignedIn
+                screen: CustomerLoggedIn
             },
             SignedOut: {
                 screen: SignedOut
@@ -58,4 +59,5 @@ export const createRootNavigator = () => {
         }
     );
 };
-
+const MainApp = createAppContainer(createRootNavigator(SignedOut));
+export default MainApp;
